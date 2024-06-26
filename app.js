@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const axios = require('axios');
 require('dotenv').config();
 const googleRoutes = require('./routes/googleAuth');
 const outlookRoutes = require('./routes/outlookAuth');
@@ -39,6 +40,7 @@ app.get('/fetch-google-emails', async (req, res) => {
     }
 });
 
+
 app.get('/fetch-outlook-emails', async (req, res) => {
     try {
         // Retrieve OAuth tokens from cookies or wherever they are stored
@@ -57,6 +59,8 @@ app.get('/fetch-outlook-emails', async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch Outlook emails' });
     }
 });
+
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
